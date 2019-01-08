@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SazBakiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="About">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="about_img" Type="nvarchar(max)" />
+    <Property Name="about_text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="about_lang_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Admintb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="admin_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="admin_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BackSlider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="back_slider_img" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="contact_phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="contact_email" Type="nvarchar" MaxLength="50" />
+    <Property Name="contact_adres" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Gallery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gallery_img" Type="nvarchar(max)" />
+    <Property Name="gallery_img_name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="HomeContent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="home_content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="home_lang_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="language" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MultipeSlider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mp_logo_img" Type="nvarchar(max)" />
+    <Property Name="mp_img" Type="nvarchar(max)" />
+    <Property Name="mp_text" Type="nvarchar(max)" />
+    <Property Name="mp_lang_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Navbar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="navbar_text" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="navbar_lag_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_img" Type="nvarchar(max)" />
+    <Property Name="order_text" Type="nvarchar(max)" />
+    <Property Name="order_lang_id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_About_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="About" Type="Self.About" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="About">
+        <PropertyRef Name="about_lang_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HomeContent_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="HomeContent" Type="Self.HomeContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HomeContent">
+        <PropertyRef Name="home_lang_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MultipeSlider_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="MultipeSlider" Type="Self.MultipeSlider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MultipeSlider">
+        <PropertyRef Name="mp_lang_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Navbar_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="Navbar" Type="Self.Navbar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Navbar">
+        <PropertyRef Name="navbar_lag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderTable_Language">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderTable">
+        <PropertyRef Name="order_lang_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SazBakiModelStoreContainer">
+    <EntitySet Name="About" EntityType="Self.About" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Admintb" EntityType="Self.Admintb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BackSlider" EntityType="Self.BackSlider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HomeContent" EntityType="Self.HomeContent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MultipeSlider" EntityType="Self.MultipeSlider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Navbar" EntityType="Self.Navbar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderTable" EntityType="Self.OrderTable" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_About_Language" Association="Self.FK_About_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="About" EntitySet="About" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HomeContent_Language" Association="Self.FK_HomeContent_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="HomeContent" EntitySet="HomeContent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MultipeSlider_Language" Association="Self.FK_MultipeSlider_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="MultipeSlider" EntitySet="MultipeSlider" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Navbar_Language" Association="Self.FK_Navbar_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="Navbar" EntitySet="Navbar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderTable_Language" Association="Self.FK_OrderTable_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="OrderTable" EntitySet="OrderTable" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

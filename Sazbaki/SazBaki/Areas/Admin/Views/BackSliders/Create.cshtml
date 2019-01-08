@@ -1,0 +1,32 @@
+﻿@model SazBaki.Models.BackSlider
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "BackSliders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <h4>BackSlider</h4>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="file" name="imagefile" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-2">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+                <div>
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

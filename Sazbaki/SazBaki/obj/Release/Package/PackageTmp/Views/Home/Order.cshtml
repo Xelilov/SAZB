@@ -1,0 +1,62 @@
+﻿@model SazBaki.Models.OrderViewModel
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Order -->
+<div class="order">
+    @if (Session["langId"] == null || (int)Session["langId"] == 1)
+    {
+        <h1>TEXNİKANIN SİFARİŞİ</h1>
+    }
+    else if((int)Session["langId"] == 2)
+    {
+        <h1>ტექნიკის შეკვეთა</h1>
+    }
+    else if ((int)Session["langId"] == 3)
+    {
+        <h1>ORDERING OF MACHINERY</h1>
+    }
+    else if ((int)Session["langId"] == 4)
+    {
+        <h1>OBJEDNÁVKA TECHNIKY</h1>
+    }
+    else if ((int)Session["langId"] == 5)
+    {
+        <h1>ЗАКАЗ OБОРУДОВАНИЯ</h1>
+    }
+    <div class="step-one">
+        <img class="img-fluid" src="~/Uploads/@Model._order[0].order_img" alt="">
+        <div class="step-bottom">
+            @Model._order[0].order_text
+        </div>
+    </div>
+    <div class="step-two">
+        <img class="img-fluid" src="~/Uploads/@Model._order[1].order_img" alt="">
+        <div class="step-bottom">
+            @Model._order[1].order_text
+        </div>
+    </div>
+    <div class="step-third">
+        <img class="img-fluid" src="~/Uploads/@Model._order[2].order_img" alt="">
+        <div class="step-bottom">
+            @Model._order[2].order_text
+        </div>
+    </div>
+    <div class="step-fourth">
+        <img class="img-fluid" src="~/Uploads/@Model._order[3].order_img" alt="">
+        <div class="step-bottom">
+            @Model._order[3].order_text
+        </div>
+    </div>
+    <div class="step-fifth">
+        <img class="img-fluid" src="~/Uploads/@Model._order[4].order_img" alt="">
+        <div class="step-bottom">
+            @Model._order[4].order_text
+        </div>
+    </div>
+</div>
+
+

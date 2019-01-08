@@ -1,0 +1,39 @@
+﻿@model SazBaki.Models.About
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>    
+    <dl class="dl-horizontal">
+        <dt>
+            Image
+        </dt>
+
+        <dd style="width:400px">
+            <img src="~/Uploads/@Html.DisplayFor(model => model.about_img)" alt="Alternate Text" style="width:100%" />
+        </dd>
+
+        <dt>
+            Content
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.about_text)
+        </dd>
+
+        <dt>
+            Language
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Language.language1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+</p>

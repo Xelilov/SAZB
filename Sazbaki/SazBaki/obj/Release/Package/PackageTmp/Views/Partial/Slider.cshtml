@@ -1,0 +1,34 @@
+﻿@model SazBaki.Models.PartialModel
+<div class="row">
+    <!-- Hero Slider -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @for (var i=0;i<Model._backslider.Count;i++)
+            {
+                if (i==0)
+                {
+                    <li data-target="#carouselExampleIndicators" data-slide-to="@i" class="active"></li>
+                }
+                else
+                {
+                    <li data-target="#carouselExampleIndicators" data-slide-to="@i"></li>
+                }
+            }
+            @*<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>*@
+        </ol>
+        <div class="carousel-inner">
+            @{ Boolean first = true; } 
+            @foreach (var item in Model._backslider)
+            {
+                <div class="carousel-item item @( first ? "active" : "" )">
+                    <img class="d-block w-100" src="~/Uploads/@item.back_slider_img" alt="First slide">
+                </div>
+                first = false;
+            }
+        </div>
+    </div>
+</div>

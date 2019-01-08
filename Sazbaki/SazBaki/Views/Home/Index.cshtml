@@ -1,0 +1,46 @@
+﻿@model SazBaki.Models.IndexWiewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="home-page">    
+    <p class="py-4 px-3">
+        @Model._hometext.home_content
+    </p>
+    <div class="tab-panels">
+        <ul class="tabs">
+            <li class="mr-2" rel="@Model._mpslider[0].Id">
+                <a href="http://www.tatra.ru/" target="_blank">
+                    <img src="~/Uploads/@Model._mpslider[0].mp_logo_img" class="img-fluid" alt="">
+                </a>
+            </li>
+            <li class="mr-2" rel="@Model._mpslider[1].Id">
+                <a href="http://www.saz.cz/az/" target="_blank">
+                    <img src="~/Uploads/@Model._mpslider[1].mp_logo_img" class="img-fluid" alt="">
+                </a>
+            </li>
+            <li class="mr-2" rel="@Model._mpslider[2].Id">
+                <a href="#" target="_blank">
+                    <img src="~/Uploads/@Model._mpslider[2].mp_logo_img" class="img-fluid" alt="">
+                </a>
+            </li>
+            <li class="mr-2" rel="@Model._mpslider[3].Id">
+                <a href="http://www.ckd-krany.ru/" target="_blank">
+                    <img src="~/Uploads/@Model._mpslider[3].mp_logo_img" class="img-fluid" alt="">
+                </a>
+            </li>
+
+        </ul>
+        @{ Boolean first = true; }
+        @foreach (var item in Model._mpslider)
+        {
+            <div class="panel item @( first ? "active" : "" )" id="@item.Id">
+                <img src="~/Uploads/@item.mp_img" class="img-fluid" alt="">
+                <h1>@item.mp_text</h1>
+            </div>
+            first = false;
+        }
+    </div>
+</div>
+

@@ -1,0 +1,21 @@
+﻿@model SazBaki.Models.GalleryViewModel
+@{
+    ViewBag.Title = "Gallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Gallery -->
+<div class="gallery p-4">
+    @foreach (var item in Model._gallery)
+    {
+        <a href="~/Uploads/@item.gallery_img" data-lightbox="gallery-image">
+            <img src="~/Uploads/@item.gallery_img" alt="">
+            <div>
+                <h3>@item.gallery_img_name</h3>
+            </div>
+        </a>
+    }
+</div>
+
+

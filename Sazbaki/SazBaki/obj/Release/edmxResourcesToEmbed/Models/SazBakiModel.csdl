@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SazBakiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BackSlider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="back_slider_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contact_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contact_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contact_adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Gallery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gallery_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gallery_img_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="language1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Abouts" Relationship="SazBakiModel.FK_About_Language" FromRole="Language" ToRole="About" />
+    <NavigationProperty Name="HomeContents" Relationship="SazBakiModel.FK_HomeContent_Language" FromRole="Language" ToRole="HomeContent" />
+    <NavigationProperty Name="MultipeSliders" Relationship="SazBakiModel.FK_MultipeSlider_Language" FromRole="Language" ToRole="MultipeSlider" />
+    <NavigationProperty Name="OrderTables" Relationship="SazBakiModel.FK_OrderTable_Language" FromRole="Language" ToRole="OrderTable" />
+    <NavigationProperty Name="Navbars" Relationship="SazBakiModel.FK_Navbar_Language" FromRole="Language" ToRole="Navbar" />
+  </EntityType>
+  <EntityContainer Name="SazBakiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BackSliders" EntityType="Self.BackSlider" />
+    <EntitySet Name="Contacts" EntityType="Self.Contact" />
+    <EntitySet Name="Galleries" EntityType="Self.Gallery" />
+    <EntitySet Name="Languages" EntityType="Self.Language" />
+    <EntitySet Name="Abouts" EntityType="SazBakiModel.About" />
+    <EntitySet Name="HomeContents" EntityType="SazBakiModel.HomeContent" />
+    <EntitySet Name="MultipeSliders" EntityType="SazBakiModel.MultipeSlider" />
+    <EntitySet Name="OrderTables" EntityType="SazBakiModel.OrderTable" />
+    <AssociationSet Name="FK_About_Language" Association="SazBakiModel.FK_About_Language">
+      <End Role="Language" EntitySet="Languages" />
+      <End Role="About" EntitySet="Abouts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HomeContent_Language" Association="SazBakiModel.FK_HomeContent_Language">
+      <End Role="Language" EntitySet="Languages" />
+      <End Role="HomeContent" EntitySet="HomeContents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MultipeSlider_Language" Association="SazBakiModel.FK_MultipeSlider_Language">
+      <End Role="Language" EntitySet="Languages" />
+      <End Role="MultipeSlider" EntitySet="MultipeSliders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderTable_Language" Association="SazBakiModel.FK_OrderTable_Language">
+      <End Role="Language" EntitySet="Languages" />
+      <End Role="OrderTable" EntitySet="OrderTables" />
+    </AssociationSet>
+    <EntitySet Name="Admintbs" EntityType="SazBakiModel.Admintb" />
+    <EntitySet Name="Navbars" EntityType="SazBakiModel.Navbar" />
+    <AssociationSet Name="FK_Navbar_Language" Association="SazBakiModel.FK_Navbar_Language">
+      <End Role="Language" EntitySet="Languages" />
+      <End Role="Navbar" EntitySet="Navbars" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="About">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="about_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="about_text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="about_lang_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Language" Relationship="SazBakiModel.FK_About_Language" FromRole="About" ToRole="Language" />
+  </EntityType>
+  <EntityType Name="HomeContent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="home_content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="home_lang_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Language" Relationship="SazBakiModel.FK_HomeContent_Language" FromRole="HomeContent" ToRole="Language" />
+  </EntityType>
+  <EntityType Name="MultipeSlider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mp_logo_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="mp_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="mp_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="mp_lang_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Language" Relationship="SazBakiModel.FK_MultipeSlider_Language" FromRole="MultipeSlider" ToRole="Language" />
+  </EntityType>
+  <EntityType Name="OrderTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="order_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="order_lang_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Language" Relationship="SazBakiModel.FK_OrderTable_Language" FromRole="OrderTable" ToRole="Language" />
+  </EntityType>
+  <Association Name="FK_About_Language">
+    <End Type="SazBakiModel.Language" Role="Language" Multiplicity="1" />
+    <End Type="SazBakiModel.About" Role="About" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="About">
+        <PropertyRef Name="about_lang_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HomeContent_Language">
+    <End Type="SazBakiModel.Language" Role="Language" Multiplicity="1" />
+    <End Type="SazBakiModel.HomeContent" Role="HomeContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HomeContent">
+        <PropertyRef Name="home_lang_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MultipeSlider_Language">
+    <End Type="SazBakiModel.Language" Role="Language" Multiplicity="1" />
+    <End Type="SazBakiModel.MultipeSlider" Role="MultipeSlider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MultipeSlider">
+        <PropertyRef Name="mp_lang_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderTable_Language">
+    <End Type="SazBakiModel.Language" Role="Language" Multiplicity="1" />
+    <End Type="SazBakiModel.OrderTable" Role="OrderTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderTable">
+        <PropertyRef Name="order_lang_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Admintb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="admin_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="admin_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Navbar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="navbar_text" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="navbar_lag_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Language" Relationship="SazBakiModel.FK_Navbar_Language" FromRole="Navbar" ToRole="Language" />
+  </EntityType>
+  <Association Name="FK_Navbar_Language">
+    <End Type="SazBakiModel.Language" Role="Language" Multiplicity="1" />
+    <End Type="SazBakiModel.Navbar" Role="Navbar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Navbar">
+        <PropertyRef Name="navbar_lag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

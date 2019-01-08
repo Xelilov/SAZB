@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SazBaki.Models.About>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-secondary" })
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            <h4>Image</h4>
+        </th>
+        <th style="width:300px">
+            <h4>Content</h4>
+        </th>
+        <th>
+            <h4>Language</h4>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <div style="width:200px; height:100px;">
+                <img src="~/Uploads/@item.about_img" style="width:100%;"/>
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.about_text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Language.language1)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class = "btn btn-success" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.Id }, new { @class = "btn btn-primary" }) 
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "btn btn-danger" })*@
+        </td>
+    </tr>
+}
+
+</table>

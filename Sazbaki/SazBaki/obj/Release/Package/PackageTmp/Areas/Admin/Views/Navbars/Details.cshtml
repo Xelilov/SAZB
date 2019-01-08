@@ -1,0 +1,35 @@
+﻿@model SazBaki.Models.Navbar
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Navbar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.navbar_text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.navbar_text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Language.language1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Language.language1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

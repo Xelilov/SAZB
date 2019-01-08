@@ -1,0 +1,102 @@
+﻿@model SazBaki.Models.ContactViewModel
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    string header_text = "";
+    string bizimle_elage = "";
+    string placeholder = "";
+    string button_name = "";
+    string mesage_text = "";
+    string email = "";
+}
+@{
+
+    if (Session["langId"] == null || (int)Session["langId"] == 1)
+    {
+        header_text = "Bizə Yazın";
+        bizimle_elage = "Əlaqə Vasitələrimiz";
+        placeholder = "Ad Soyad";
+        button_name = "Göndər";
+        mesage_text = "Mesaj";
+        email = "E-mail";
+
+    }
+    else if ((int)Session["langId"] == 2)
+    {
+        header_text = "მოგვწერეთ";
+        bizimle_elage = "ჩვენი კონტაქტები";
+        placeholder = "სახელი გვარი";
+        button_name = "გაგზავნა";
+        mesage_text = "გზავნილის ტექსტი";
+        email = "ელ.ფოსტა";
+    }
+    else if((int)Session["langId"] == 3)
+    {
+        header_text = "Write to us";
+        bizimle_elage = "Our contacts";
+        placeholder = "Name Surname";
+        button_name = "Send";
+        mesage_text = "Text of the message";
+        email = "E-mail";
+    }
+    else if ((int)Session["langId"] == 4)
+    {
+        header_text = "Napište nám";
+        bizimle_elage = "Naše kontakty";
+        placeholder = "Jméno Příjmení";
+        button_name = "Poslat";
+        mesage_text = "Text zprávy";
+        email = "e-mailem";
+    }
+    else if((int)Session["langId"] == 5)
+    {
+        header_text = "Пишите нам";
+        bizimle_elage = "Наши контакты";
+        placeholder = "Имя Фамилия";
+        button_name = "Отправить";
+        mesage_text = "Текст сообщения";
+        email = "Эл. адрес";
+
+    }
+}
+
+<!-- Contact -->
+<div class="contact">
+    <section id="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6078.147052884356!2d49.829564!3d40.385063!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4796092b41a864b4!2sCaspian+Plaza!5e0!3m2!1sen!2sru!4v1524654979442" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </section>
+    <div class="row">
+        <div class="col-lg-6 information p-5">
+            <h2>@bizimle_elage</h2>
+            <div class="d-flex mt-4 mb-3">
+                <i class="fas fa-map-marker align-self-center"></i>
+                <p>
+                    @Model._contact.contact_adres
+                </p>
+            </div>
+            <div class="d-flex my-3">
+                <i class="fas fa-phone align-self-center"></i>
+                <p>@Model._contact.contact_phone</p>
+            </div>
+            <div class="d-flex my-3">
+                <i class="fas fa-envelope align-self-center"></i>
+                <p>@Model._contact.contact_email</p>
+            </div>
+        </div>
+        <div class="col-lg-6 send-email p-5">
+            <h2>@header_text</h2>
+            <form action="Contact" method="post">
+                <input type="text" name="asSoyad" placeholder="@placeholder">
+                <input type="text" name="mail" placeholder="@email">
+                <textarea name="mailtext" placeholder="@mesage_text"></textarea>
+                <p>@ViewBag.Error</p>
+                <input class="ml-auto" type="submit" value="@button_name">
+            </form>
+        </div>
+    </div>
+</div>
+
+

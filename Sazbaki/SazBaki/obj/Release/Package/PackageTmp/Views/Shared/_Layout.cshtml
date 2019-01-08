@@ -1,0 +1,140 @@
+﻿@using SazBaki.Models;
+@{ 
+    SazBakiEntities db = new SazBakiEntities();
+    var Language = db.Languages.ToList();
+    var contact = db.Contacts.First();
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="~/assents-home/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assents-home/css/fontawesome-all.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="~/assents-home/css/lightbox.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assents-home/css/style.css">
+    <title>SAZBAKI</title>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container-fluid">
+            @Html.Action("Slider", "Partial")
+            <div class="container">
+                <div class="row">
+                    <div class="search-bar col-md-4 col-sm-6">
+                    </div>
+                    <div class="offset-md-4 col-md-4 col-sm-6 d-flex flex-column align-items-md-center align-items-sm-end languages">
+
+                        <ul class="list-unstyled">
+                            @{string actionName = ViewContext.RouteData.Values["action"].ToString();
+                                if (actionName == "lang_id")
+                                {
+                                    actionName = "index";
+                                }
+                            }
+                            <li>
+                                <a href="@Url.Action("lang_id", "Home", new { id=Language[0].Id , ActionName = actionName@*, languageAbbrevation = "az-Latn"*@ })">
+                                    <img src="~/assents-home/images/az.png" alt="">
+                                    @Language[0].language1
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("lang_id", "Home", new { id=Language[1].Id , ActionName = actionName@*, languageAbbrevation = "ka"*@ })">
+                                    <img src="~/assents-home/images/geo.png" alt="">
+                                    @Language[1].language1
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("lang_id", "Home", new { id=Language[2].Id , ActionName = actionName@*, languageAbbrevation = "en"*@ })">
+                                    <img src="~/assents-home/images/en.png" alt="">
+                                    @Language[2].language1
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("lang_id", "Home", new { id=Language[3].Id , ActionName = actionName@*, languageAbbrevation = "cs"*@ })">
+                                    <img src="~/assents-home/images/cz.png" alt="">
+                                    @Language[3].language1
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("lang_id", "Home", new { id=Language[4].Id , ActionName = actionName@*, languageAbbrevation = "ru"*@ })">
+                                    <img src="~/assents-home/images/ru.png" alt="">
+                                    @Language[4].language1
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main -->    
+    <div id="main">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-3 text-right text-white sidebar d-flex flex-md-column p-0">
+                    <div class="logo">
+                        <a href="/Home/Index">
+                            <img src="~/assents-home/images/logo2.png" class="img-fluid" alt="">
+                        </a>
+                    </div>
+                    @Html.Action("Navbar", "Partial")
+
+                    <!-- Phone & Email -->
+                    <div class="phone-and-email mt-auto">
+                        <div>
+                            Telefon:<br>
+                            @contact.contact_phone<br>
+                        </div>
+                        <div>
+                            E-mail:<br>
+                            @contact.contact_email
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <button>
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Content -->
+                <div class="content col-lg-8 col-md-8 p-0">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="offset-lg-3 col-lg-8 offset-md-3 col-md-8 p-0 d-flex justify-content-between">
+                    <p>Bütün hüquqlar qorunur © 2012-2018 SAZ BAKI</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="phone-and-email text-white">
+                        <div>
+                            Telefon:<br>
+                            (+994 12) 505 84 19<br>
+                        </div>
+                        <div>
+                            E-mail:<br>
+                            <a href="mailto:info@sazbaki.com">info@sazbaki.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/assents-home/js/jquery-3.3.1.js"></script>
+    <script src="~/assents-home/js/popper.min.js"></script>
+    <script src="~/assents-home/js/bootstrap.min.js"></script>
+    <script src="~/assents-home/js/lightbox.js"></script>
+    <script type="text/javascript" src="~/assents-home/js/main.js"></script>
+</body>
+</html>

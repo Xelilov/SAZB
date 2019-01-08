@@ -1,0 +1,19 @@
+﻿@model SazBaki.Models.PartialModel
+
+    <ul class="list-unstyled">
+        <li>
+            <a href="@Url.Action("Index","Home")">@Model._navbar[0].navbar_text</a>
+        </li>
+        <li>
+            <a href="@Url.Action("About","Home")">@Model._navbar[1].navbar_text</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Order","Home")">@Model._navbar[2].navbar_text</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Gallery","Home")">@Model._navbar[3].navbar_text</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Contact","Home")">@Model._navbar[4].navbar_text</a>
+        </li>
+    </ul>

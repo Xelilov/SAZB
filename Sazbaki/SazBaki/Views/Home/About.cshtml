@@ -1,0 +1,16 @@
+﻿@model SazBaki.Models.AboutViewModel
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- About Us -->
+<div class="about-us">
+    <img class="img-fluid mt-3" src="~/Uploads/@Model._about.about_img" alt="">
+    <blockquote class="m-sm-5 m-3">
+        @Model._about.about_text
+    </blockquote>
+</div>
+
+
